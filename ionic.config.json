@@ -1,0 +1,7 @@
+{
+  "name": "appDefinitivo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
