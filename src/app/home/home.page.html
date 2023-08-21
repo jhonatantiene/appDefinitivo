@@ -1,20 +1,29 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Consumo de água
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div style="display: flex; flex-direction: column; padding: 10px;">
+
+    <div>
+      <ion-input label="Digite seu peso:" type="text" [(ngModel)]="dadosPessoa.peso"></ion-input>
+      <ion-input label="Total de água bebida hoje:" type="text" [(ngModel)]="dadosPessoa.consumo"></ion-input>
+    </div>
+    <ion-button (click)="getDados(dadosPessoa.peso, dadosPessoa.consumo)">Enviar</ion-button>
+
+    <div class="cards">
+      <ion-card>
+        <canvas id="graficos"></canvas>
+      </ion-card>
+    </div>
+
   </div>
+
+
+
 </ion-content>
