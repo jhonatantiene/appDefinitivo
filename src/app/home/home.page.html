@@ -10,20 +10,17 @@
 
   <div style="display: flex; flex-direction: column; padding: 10px;">
 
-    <div>
-      <ion-input label="Digite seu peso:" type="text" [(ngModel)]="dadosPessoa.peso"></ion-input>
-      <ion-input label="Total de água bebida hoje:" type="text" [(ngModel)]="dadosPessoa.consumo"></ion-input>
+    <div style="margin: 0; padding: 0;">
+      <ion-input label="Digite seu peso(kg):" type="number" step="any" [(ngModel)]="dadosPessoa.peso"></ion-input>
+      <ion-input label="Água bebida hoje(L):" type="number" step="any" [(ngModel)]="dadosPessoa.consumo"></ion-input>
     </div>
     <ion-button (click)="getDados(dadosPessoa.peso, dadosPessoa.consumo)">Enviar</ion-button>
 
     <div class="cards">
-      <ion-card>
         <canvas id="graficos"></canvas>
-      </ion-card>
     </div>
-
+    <ion-toast [isOpen]="mensagemErro" message="Digite um peso acima de 0" [duration]="2000"
+      (didDismiss)="digitadoErro(false)"></ion-toast>
   </div>
-
-
 
 </ion-content>
