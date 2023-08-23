@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Consumo de água
+      <!-- Consumo de água -->
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,9 +15,12 @@
       <ion-input label="Água bebida hoje(L):" type="number" step="any" [(ngModel)]="dadosPessoa.consumo"></ion-input>
     </div>
     <ion-button (click)="getDados(dadosPessoa.peso, dadosPessoa.consumo)">Enviar</ion-button>
+    <div style="margin-top: 10px; text-align: center;">
+      <span>{{dadosPessoa.totalAbeber != '' ? 'Você precisa beber ' + dadosPessoa.totalAbeber + ' litros de água por dia' : ''}}</span>
+    </div>
 
     <div class="cards">
-        <canvas id="graficos"></canvas>
+      <canvas id="graficos"></canvas>
     </div>
     <ion-toast [isOpen]="mensagemErro" message="Digite um peso acima de 0" [duration]="2000"
       (didDismiss)="digitadoErro(false)"></ion-toast>
