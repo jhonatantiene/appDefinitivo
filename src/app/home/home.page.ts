@@ -49,7 +49,7 @@ export class HomePage implements OnInit {
             datasets: [
               {
                 data: data.map(row => { return row.count }),
-                hoverOffset: 10
+                hoverOffset: 0
               }
             ]
           }
