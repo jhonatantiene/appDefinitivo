@@ -12,10 +12,10 @@ export class HomePage implements OnInit {
   constructor() {
 
   }
-  dadosPessoa: { consumo: any, peso: any, totalAbeber: any } = {
+  dadosPessoa: { consumo: any, peso: any, totalAbeber: Number } = {
     consumo: '',
     peso: '',
-    totalAbeber: ''
+    totalAbeber: 0
   }
 
   graficoAnterior: any
@@ -49,19 +49,18 @@ export class HomePage implements OnInit {
             datasets: [
               {
                 data: data.map(row => { return row.count }),
-                hoverOffset: 0
+                hoverOffset: 10
               }
             ]
           }
         }
       )
     } else {
-      this.digitadoErro(true)
+      this.pesoMenorQue0(true)
     }
   }
 
   getDados(peso: number, aguaBebida: number) {
-    this.dadosPessoa.peso = Number(this.dadosPessoa.peso)
     this.dadosPessoa.peso = peso
     this.dadosPessoa.consumo = aguaBebida
     this.dadosPessoa.totalAbeber = peso * 35 / 1000
@@ -72,7 +71,7 @@ export class HomePage implements OnInit {
 
   mensagemErro = false
 
-  digitadoErro(ToastOpen: boolean) {
+  pesoMenorQue0(ToastOpen: boolean) {
     this.mensagemErro = ToastOpen
   }
 }
