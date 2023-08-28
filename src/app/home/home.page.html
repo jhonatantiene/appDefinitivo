@@ -8,13 +8,13 @@
 
 <ion-content [fullscreen]="true">
 
-  <div style="display: flex; flex-direction: column; padding: 10px;">
-    <div style="margin: 0; padding: 0;">
+  <div class="container1">
+    <div class="container2">
       <ion-input label="Digite seu peso(kg):" type="number" step="any" [(ngModel)]="dadosPessoa.peso"></ion-input>
       <ion-input label="Água bebida hoje(L):" type="number" step="any" [(ngModel)]="dadosPessoa.consumo"></ion-input>
     </div>
     <ion-button (click)="getDados(dadosPessoa.peso, dadosPessoa.consumo)">Enviar</ion-button>
-    <div style="margin-top: 10px; text-align: center;">
+    <div class="container3">
       <span *ngIf="dadosPessoa.totalAbeber != 0">{{'Você precisa beber ' + dadosPessoa.totalAbeber + ' litros de água por dia'}}</span>
     </div>
       <canvas id="graficos"></canvas>

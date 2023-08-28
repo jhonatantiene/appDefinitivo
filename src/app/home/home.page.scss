@@ -3,3 +3,19 @@
   margin: 0;
   border: 0;
 }
+
+.container1 {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.conainer2 {
+  margin: 0;
+  padding: 0;
+}
+
+.conainer3 {
+  margin-top: 10px;
+  text-align: center;
+}

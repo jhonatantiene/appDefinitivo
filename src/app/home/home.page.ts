@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
-
+import { LocalNotifications } from '@capacitor/local-notifications';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +9,7 @@ import Chart from 'chart.js/auto';
 })
 export class HomePage implements OnInit {
 
-  constructor() {
-
-  }
+  constructor() { }
   dadosPessoa: { consumo: any, peso: any, totalAbeber: Number } = {
     consumo: '',
     peso: '',
@@ -21,13 +19,20 @@ export class HomePage implements OnInit {
   graficoAnterior: any
   graficoExiste: boolean = false
 
+  notificação = LocalNotifications.schedule({
+    notifications: [
+      {
+        title: 'Minha notificação',
+        body: 'Beba água',
+        id: 1,
+        schedule: { at: new Date(Date.now() + 1000 * 5) }
+      }
+    ]
+  })
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void { }
 
   async grafico() {
-
     this.graficoExiste = true
     if (Number(this.dadosPessoa.peso) > 0) {
       const data = [
@@ -35,11 +40,9 @@ export class HomePage implements OnInit {
         { count: Number(this.dadosPessoa.totalAbeber) - Number(this.dadosPessoa.consumo) < 0 ? 0 : Number(this.dadosPessoa.totalAbeber) - Number(this.dadosPessoa.consumo), msg: 'Restante' },
         { count: this.dadosPessoa.totalAbeber < this.dadosPessoa.consumo ? Math.abs(Number(this.dadosPessoa.totalAbeber) - Number(this.dadosPessoa.consumo)) : 0, msg: 'Ultrapassou' }
       ];
-
       if (this.graficoAnterior) {
         this.graficoAnterior.destroy()
       }
-
       this.graficoAnterior = new Chart(
         document.getElementById('graficos') as HTMLCanvasElement,
         {
