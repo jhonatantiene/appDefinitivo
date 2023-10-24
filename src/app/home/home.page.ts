@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { LocalNotifications } from '@capacitor/local-notifications';
+import { HttpClient } from '@angular/common/http';
+import { CrudService } from '../services/crud.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +12,13 @@ import { LocalNotifications } from '@capacitor/local-notifications';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  constructor(private crud: CrudService) { }
+
+  consumo: FormGroup = new FormGroup({
+    aguaConsumida: new FormControl('', Validators.required),
+    aguaRestante: new FormControl('', Validators.required),
+  })
+
   dadosPessoa: { consumo: any, peso: any, totalAbeber: Number } = {
     consumo: '',
     peso: '',
@@ -30,7 +39,9 @@ export class HomePage implements OnInit {
     ]
   })
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+
+  }
 
   async grafico() {
     this.graficoExiste = true
@@ -70,6 +81,12 @@ export class HomePage implements OnInit {
     this.dadosPessoa.peso.toLocaleString().replace(',', '.')
     this.dadosPessoa.consumo.toLocaleString().replace(',', '.')
     this.grafico()
+  }
+
+  cadastro() {
+    this.crud.newUser().subscribe(r => {
+      console.log(r)
+    })
   }
 
   mensagemErro = false
